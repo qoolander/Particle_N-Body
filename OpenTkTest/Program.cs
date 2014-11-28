@@ -30,6 +30,8 @@ class Program
                 farticle = new Particle(game);
 
                 Console.WriteLine(game.Width);
+
+                farticle.VelocityX = 1;
             };
 
             game.Resize += (sender, e) =>
@@ -55,28 +57,7 @@ class Program
                 GL.LoadIdentity();
                 GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
 
-                /*GL.Begin(PrimitiveType.Triangles);
-                
-                GL.Color3(Color.DarkGoldenrod);                
-                GL.Vertex2(-1.0f, 1.0f);
-                GL.Color3(Color.SpringGreen);
-                GL.Vertex2(0.0f, -1.0f);
-                GL.Color3(Color.HotPink);
-                GL.Vertex2(1.0f, 1.0f);
-
-                GL.Color3(Color.SpringGreen.Blend(Color.HotPink));
-                GL.Vertex2(1.0f, -1.0f);
-                GL.Vertex2(0.0f, 1.0f);
-                GL.Vertex2(-1.0f, -1.0f);
-
-                GL.End();*/
-
-                farticle.VelocityX = 1;
                 farticle.Update();
-
-                /*GL.Begin(PrimitiveType.Points);
-                    GL.Vertex2(toScreenCoords(game.Width/2, game.Height/2, game));
-                GL.End();*/
 
                 game.SwapBuffers();
             };

@@ -31,7 +31,7 @@ namespace OpenTkTest
             X = game.Height/2;
             Y = game.Width/2;
             Mass = 10;
-            Drag = 0.01f;
+            Drag = 0;
         }
 
         public Particle(float x, float y, float mass, float drag, GameWindow pGame)
@@ -86,6 +86,11 @@ namespace OpenTkTest
             Y += VelocityY;
             VelocityX = VelocityX>0 ? VelocityX-Drag : VelocityX<0 ? VelocityX + Drag : VelocityX;
             VelocityY = VelocityY > 0 ? VelocityY - Drag : VelocityY < 0 ? VelocityY + Drag : VelocityY;
+        }
+
+        void calculateCollisions()
+        {
+
         }
     }
 }

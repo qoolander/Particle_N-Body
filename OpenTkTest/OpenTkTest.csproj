@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Extentions.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
