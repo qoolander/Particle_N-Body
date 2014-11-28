@@ -1,0 +1,9 @@
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\bin\Debug\OpenTkTest.exe.config
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\obj\Debug\OpenTkTest.csprojResolveAssemblyReference.cache
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\bin\Debug\OpenTkTest.exe
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\bin\Debug\OpenTkTest.pdb
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\bin\Debug\OpenTK.dll
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\bin\Debug\OpenTK.pdb
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\bin\Debug\OpenTK.xml
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\obj\Debug\OpenTkTest.exe
+D:\Development\TothUtils\OpenTkTest\OpenTkTest\obj\Debug\OpenTkTest.pdb
