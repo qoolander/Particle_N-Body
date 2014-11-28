@@ -28,8 +28,8 @@ namespace OpenTkTest
         public Particle(GameWindow pGame)
         {
             game = pGame;
-            X = game.Height/2;
-            Y = game.Width/2;
+            X = game.Width/2;
+            Y = game.Height/2;
             Mass = 10;
             Drag = 0;
         }
