@@ -5,6 +5,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using OpenTkTest;
+using OpenTkTest.Extensions;
 
 
 class Program
@@ -16,7 +17,7 @@ class Program
     {
         
 
-        using (var game = new GameWindow())
+        using (var game = new GraphicsWindow())
         {
             game.Load += (sender, e) =>
             {

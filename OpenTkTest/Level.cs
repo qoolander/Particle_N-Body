@@ -7,37 +7,49 @@ using System.Threading.Tasks;
 
 namespace OpenTkTest.Level
 {
-    enum borders
+    public enum borders
     {
         left, right, top, bottem
     }
 
-    class Level
+    internal class Level
     {
-        Level(GameWindow pGame){
+        internal Level(Extensions.GraphicsWindow pGame){
+            collisionGeomitry = new List<CollisionShape>();
+
             game = pGame;
+
+            collisionGeomitry.Add(new CollisionEdge(borders.bottem, new Vector2(game.Width, game.Height)));
+            collisionGeomitry.Add(new CollisionEdge(borders.left, new Vector2(game.Width, game.Height)));
+            collisionGeomitry.Add(new CollisionEdge(borders.right, new Vector2(game.Width, game.Height)));
+            collisionGeomitry.Add(new CollisionEdge(borders.top, new Vector2(game.Width, game.Height)));
         }
 
-        GameWindow game;
+        Extensions.GraphicsWindow game;
 
         public List<CollisionShape> collisionGeomitry;
 
         /*
          * return null if colliding with nothing, else returns a list of things that the object is colliding with
          */
-        List<Object> CollidingWith (CollisionShape ShapeToTest)
+        public List<CollisionShape> CollidingWith (CollisionShape ShapeToTest)
         {
-            List<Object> result = new List<Object>();
-            if (ShapeToTest.Position.X > game.Width || ShapeToTest.Position.X < 0 || ShapeToTest.Position.Y > game.Height || ShapeToTest.Position.Y < 0)
+            List<CollisionShape> result = new List<CollisionShape>();
+            foreach (var item in collisionGeomitry)
             {
-                result.Add(ShapeToTest.Position.X > game.Width ? borders.right : ShapeToTest.Position.X < 0 ? borders.left : ShapeToTest.Position.Y < 0 ? borders.bottem : ShapeToTest.Position.Y > game.Height ? borders.top);
-                return result;
+                if (item is CollisionEdge)
+                {
+                    if (((CollisionEdge)item).isPointOverlapping(ShapeToTest.Position))
+                    {
+                        result.Add(item);
+                    }
+                }
             }
-            return null;
+            return result;
         }
     }
 
-    class CollisionShape
+    public class CollisionShape
     {
         internal Vector2 Position;
 
@@ -51,18 +63,19 @@ namespace OpenTkTest.Level
         }
     }
 
-    class CollisionSphere : CollisionShape
+    public class CollisionSphere : CollisionShape
     {
-        CollisionSphere(int numberOfVerts){
-            points = new points[numberOfVerts]();
+        public CollisionSphere(int numberOfVerts, float pRadius){
+            points = new Vector2[numberOfVerts];
+            radius = pRadius;
         }
 
         public float radius;
 
         internal override bool isPointOverlapping(Vector2 p)
         {          
-                float xd = position.X - p.X;
-                float yd = position.Y - p.Y;
+                float xd = Position.X - p.X;
+                float yd = Position.Y - p.Y;
 
                 float distance = (float)(Math.Sqrt(xd * xd + yd * yd));
 
@@ -70,11 +83,58 @@ namespace OpenTkTest.Level
         }
     }
 
+    //Isn't implemented yet
     class CollisionBounds : CollisionShape
     {
         CollisionBounds(){
-            points = new Vector2[2]();
+            points = new Vector2[2];
         }
 
+    }
+
+    public class CollisionEdge : CollisionShape
+    {
+        public borders borderType;
+
+        Vector2 bounds;
+
+        public CollisionEdge(borders pBorderType, Vector2 pBounds)
+        {
+            borderType = pBorderType;
+            bounds = pBounds;
+        }
+
+        internal override bool isPointOverlapping(Vector2 p)
+        {
+            if (borderType == borders.left)
+            {
+                if (p.X < 0)
+                {
+                    return true;
+                }
+            }
+            else if (borderType == borders.bottem)
+            {
+                if (p.Y < 0)
+                {
+                    return true;
+                }
+            }
+            else if (borderType == borders.right)
+            {
+                if (p.X > bounds.X)
+                {
+                    return true;
+                }
+            }
+            else if (borderType == borders.top)
+            {
+                if (p.Y > bounds.Y)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
